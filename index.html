@@ -10,11 +10,29 @@
 </head>
 
 <style>
+  body{
+    overflow-x: hidden;
+  }
     a{
         text-decoration: none;
     }
     .bi{
         color: black;
+    }
+    .aboutInfoDiv{
+      max-height: 400px;
+      overflow-y: scroll;
+    }
+    .aboutInfoDiv::-webkit-scrollbar{
+      width: 2px;
+    }
+    .aboutInfoDiv::-webkit-scrollbar-thumb{
+      width: 2px;
+      background-color: rgb(22, 22, 22);
+      border-radius: 7px;
+    }
+    .aboutInfoDiv::-webkit-scrollbar-track{
+      background: #999;
     }
 </style>
 
@@ -144,7 +162,7 @@
 
         <!-- experience -->
         <h4 class="text-center mt-5">Experience</h4>
-        <div class="row p-2 bg-light d-flex justify-content-center">
+        <div class="row p-2 bg-light d-flex justify-content-center exp_div">
 
             <!-- card 1 -->
             <div class="col-lg-3 col-md-6 col-sm-10 mt-3 animate__animated exp_card">
@@ -155,7 +173,7 @@
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><b>Roles</b></li>
+                      <li class="list-group-item"><b>Role</b></li>
                       <li class="list-group-item">Technical Assistant</li>
                       <li class="list-group-item">Ui Developer</li>
                     </ul>
@@ -171,13 +189,13 @@
                 <div class="card w-100" style="width: 18rem;">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body">
-                      <h5 class="card-title">DY Patil Vidyapeeth, Pimpri Pune</h5>
+                      <h5 class="card-title">DPU-IDL, Pimpri Pune</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><b>Roles</b></li>
-                      <li class="list-group-item">Technical Assistant</li>
-                      <li class="list-group-item">Ui Developer</li>
+                      <li class="list-group-item"><b>Role</b></li>
+                      <li class="list-group-item">Technical Co-Ordinator</li>
+                      <li class="list-group-item">UI Developer</li>
                     </ul>
                     <div class="card-body">
                       <a href="#" class="card-link">Website link</a>
@@ -191,13 +209,13 @@
                 <div class="card w-100" style="width: 18rem;">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body">
-                      <h5 class="card-title">DY Patil Vidyapeeth, Pimpri Pune</h5>
+                      <h5 class="card-title">DPU-COL Vidyapeeth, Pimpri Pune</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><b>Roles</b></li>
+                      <li class="list-group-item"><b>Role</b></li>
                       <li class="list-group-item">Technical Assistant</li>
-                      <li class="list-group-item">Ui Developer</li>
+                      <li class="list-group-item">Ui/UX Developer</li>
                     </ul>
                     <div class="card-body">
                       <a href="#" class="card-link">Website link</a>
@@ -225,11 +243,15 @@
 <script>
 
     let cards = document.querySelectorAll(".exp_card");
-    let classes = ["animate__fadeInLeft", "animate__fadeInUp", "animate__fadeInRight"]
+    const exp_div = document.querySelector(".exp_div");
+    let classes = ["animate__fadeInLeft", "animate__fadeInUp", "animate__fadeInRight"];
 
+    console.log(window.innerWidth);
     document.addEventListener("scroll", (e) => {
 
-            if (scrollY > 500 && scrollY < 800) {
+        if(window.innerWidth>=980)
+        {
+          if (scrollY > 500 && scrollY < 800) {
                 cards.forEach((card, index) => {
                     card.classList.add(classes[index])
                 })
@@ -239,7 +261,20 @@
                     card.classList.remove(classes[index])
                 })
             }
-        })
+
+            if(!exp_div.classList.contains("justify-content-center")) {
+            exp_div.classList.add("justify-content-center");
+            exp_div.classList.remove("justify-content-start");
+          }
+        }
+        else{
+          if(exp_div.classList.contains("justify-content-center")) {
+            exp_div.classList.remove("justify-content-center");
+            exp_div.classList.add("justify-content-start");
+          }
+          cards.forEach((card, index) => card.classList.remove(classes[index]))
+        }
+      })
 
 </script>
 
